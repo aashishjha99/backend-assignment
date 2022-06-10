@@ -23,4 +23,8 @@ public class PurchaseOrderSrvc {
 
         return purchOrderRepo.getPurchaseOrderid(id);
     }
+
+    public PurchaseOrder getPurchaseDetails(long id){
+        return purchOrderRepo.getAllPurchaseDetails(id);
+    }
 }

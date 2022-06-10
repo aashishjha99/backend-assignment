@@ -15,4 +15,6 @@ public  interface PurchOrderRepo extends JpaRepository<PurchaseOrder , Long>  {
 PurchaseOrder getPurchaseOrderid(long id);
 
     
+@Query(value = " select *from purchase_order where customer_customer_id = ?1",nativeQuery = true)
+PurchaseOrder getAllPurchaseDetails(long id);
 }

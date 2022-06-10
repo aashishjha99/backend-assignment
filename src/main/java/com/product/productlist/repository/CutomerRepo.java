@@ -15,4 +15,8 @@ public  interface CutomerRepo extends JpaRepository<Customer,Long> {
 Customer findbymail(String mail);
 
 
+
+@Query(value = "select *from customer where city = ?1",nativeQuery = true)
+Customer findByCity(String city);
+
 }

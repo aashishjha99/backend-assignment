@@ -23,5 +23,10 @@ public class CustomerSrvc {
 
         return cutomerRepo.findbymail(email);
     }
+
+    public Customer getCustomerCity(String city){
+
+        return cutomerRepo.findByCity(city);
+    }
     
 }
