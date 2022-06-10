@@ -16,4 +16,9 @@ public class ShippingDetailsSrvc {
         return shippingDetRepo.save(shippingDetails);
     }
 
+
+    public ShippingDetails getShippingDetails(long custID,long PurcID)
+    {
+        return shippingDetRepo.getShippingDetails(custID, PurcID);
+    }
 }

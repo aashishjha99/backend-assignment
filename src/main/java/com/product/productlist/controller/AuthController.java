@@ -77,17 +77,15 @@ public class AuthController {
     public ResponseEntity<String> insertShippingDetails(@RequestBody ShippingDetails shippingDetails) {
         Customer customer = customerSrvc.getCustomerDetails(shippingDetails.getCustomer().getEmail());
         PurchaseOrder purchaseOr = purchaseOrderSrvc.getPurchaseOrderid(customer.getCustomerId());
-        
-        System.out.println("sssssss" +  " " + purchaseOr);
 
-        if (customer != null && purchaseOr!=null) {
+        System.out.println("sssssss" + " " + purchaseOr);
+
+        if (customer != null && purchaseOr != null) {
 
             shippingDetails.setCustomer(customer);
-             shippingDetails.setPurchaseOrder(purchaseOr);
-             ShippingDetails shippingDetails2 = shippingDetailsSrvc.saveShippingDetails(shippingDetails);
-        
-       
-           
+            shippingDetails.setPurchaseOrder(purchaseOr);
+            ShippingDetails shippingDetails2 = shippingDetailsSrvc.saveShippingDetails(shippingDetails);
+
             if (shippingDetails2 != null) {
                 return new ResponseEntity<String>("shipped", HttpStatus.OK);
             } else {
@@ -101,12 +99,21 @@ public class AuthController {
 
     }
 
-
     @GetMapping("/Customer/City")
-    public Customer getCustomerByCity(String CityName){
+    public Customer getCustomerByCity(String CityName) {
 
         return customerSrvc.getCustomerCity(CityName);
     }
 
 
+    @GetMapping("/Purchase/Customer")
+    public PurchaseOrder getPurchaseDetails(long id){
+
+        return purchaseOrderSrvc.getPurchaseDetails(id);
+    }
+
+    @GetMapping("/Purchase/Details")
+    public ShippingDetails getPurchasingDetails(long CustID, long PurchID) {
+        return shippingDetailsSrvc.getShippingDetails(CustID, PurchID);
+    }
 }
