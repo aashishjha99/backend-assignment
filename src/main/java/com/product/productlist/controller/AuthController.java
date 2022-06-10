@@ -112,22 +112,22 @@ public class AuthController {
     @GetMapping("/Customer/{City}")
     public List<Customer> getCustomerByCity(@PathVariable String City) {
 
-    
-        var cities = (List<Customer>)customerSrvc.getCustomerCity(City);
+        var cities = (List<Customer>) customerSrvc.getCustomerCity(City);
         return cities;
-      
-       
+
     }
 
     @GetMapping("/Purchase/Customer/{id}")
-    public List<PurchaseOrder> getPurchaseDetails( @PathVariable Long id) {
+    public List<PurchaseOrder> getPurchaseDetails(@PathVariable Long id) {
 
-        var purchase = (List<PurchaseOrder>)purchaseOrderSrvc.getPurchaseDetails(id);
-                return purchase;
+        var purchase = (List<PurchaseOrder>) purchaseOrderSrvc.getPurchaseDetails(id);
+        return purchase;
     }
 
-    @GetMapping("/Purchase/Details")
-    public ShippingDetails getPurchasingDetails(long CustID, long PurchID) {
-        return shippingDetailsSrvc.getShippingDetails(CustID, PurchID);
+    @GetMapping("/Purchase/Details/{CustID}/{PurchID}")
+    public List<ShippingDetails> getPurchasingDetails(@PathVariable long CustID, @PathVariable long PurchID) {
+
+        var shipping = (List<ShippingDetails>) shippingDetailsSrvc.getShippingDetails(CustID, PurchID);
+        return shipping;
     }
 }

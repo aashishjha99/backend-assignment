@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.product.productlist.model.ShippingDetails;
 import com.product.productlist.repository.ShippingDetRepo;
-
+import java.util.List;
 @Service
 public class ShippingDetailsSrvc {
 
@@ -17,8 +17,9 @@ public class ShippingDetailsSrvc {
     }
 
 
-    public ShippingDetails getShippingDetails(long custID,long PurcID)
+    public List<ShippingDetails> getShippingDetails(long custID,long PurcID)
     {
-        return shippingDetRepo.getShippingDetails(custID, PurcID);
+        var shipping = (List<ShippingDetails>)shippingDetRepo.getShippingDetails(custID, PurcID);
+        return shipping;
     }
 }
