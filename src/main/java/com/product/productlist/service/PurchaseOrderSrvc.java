@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.product.productlist.model.PurchaseOrder;
 import com.product.productlist.repository.PurchOrderRepo;
-
+import java.util.List;
 @Service
 public class PurchaseOrderSrvc {
     
@@ -24,7 +24,9 @@ public class PurchaseOrderSrvc {
         return purchOrderRepo.getPurchaseOrderid(id);
     }
 
-    public PurchaseOrder getPurchaseDetails(long id){
-        return purchOrderRepo.getAllPurchaseDetails(id);
+    public List<PurchaseOrder> getPurchaseDetails(Long id){
+        
+        var purchase = (List<PurchaseOrder>)purchOrderRepo.getAllPurchaseDetails(id);
+        return purchase;
     }
 }
