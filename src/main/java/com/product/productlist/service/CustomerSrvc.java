@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.product.productlist.model.Customer;
 import com.product.productlist.repository.CutomerRepo;
-
+import java.util.List;
 @Service
 public class CustomerSrvc {
 
@@ -24,9 +24,10 @@ public class CustomerSrvc {
         return cutomerRepo.findbymail(email);
     }
 
-    public Customer getCustomerCity(String city){
+    public List<Customer> getCustomerCity(String CityName){
 
-        return cutomerRepo.findByCity(city);
+        var city = (List<Customer>)cutomerRepo.findByCity(CityName);
+        return city;
     }
     
 }

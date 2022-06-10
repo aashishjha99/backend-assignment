@@ -1,20 +1,27 @@
 package com.product.productlist.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.product.productlist.model.Customer;
 import com.product.productlist.model.PurchaseOrder;
 import com.product.productlist.model.ShippingDetails;
+import com.product.productlist.repository.CutomerRepo;
 import com.product.productlist.service.CustomerSrvc;
 import com.product.productlist.service.PurchaseOrderSrvc;
 import com.product.productlist.service.ShippingDetailsSrvc;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/order")
@@ -28,6 +35,9 @@ public class AuthController {
 
     @Autowired
     private ShippingDetailsSrvc shippingDetailsSrvc;
+
+    @Autowired
+    private CutomerRepo cutomerRepo;
 
     @PostMapping("/Customer")
     public ResponseEntity<String> insertCustomer(@RequestBody Customer customer) {
@@ -99,15 +109,18 @@ public class AuthController {
 
     }
 
-    @GetMapping("/Customer/City")
-    public Customer getCustomerByCity(String CityName) {
+    @GetMapping("/Customer/{City}")
+    public List<Customer> getCustomerByCity(@PathVariable String City) {
 
-        return customerSrvc.getCustomerCity(CityName);
+    
+         var cities = (List<Customer>)customerSrvc.getCustomerCity(City);
+        return cities;
+      
+       
     }
 
-
     @GetMapping("/Purchase/Customer")
-    public PurchaseOrder getPurchaseDetails(long id){
+    public PurchaseOrder getPurchaseDetails(long id) {
 
         return purchaseOrderSrvc.getPurchaseDetails(id);
     }
