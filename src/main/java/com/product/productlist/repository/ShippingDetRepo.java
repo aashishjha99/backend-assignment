@@ -12,7 +12,7 @@ public interface ShippingDetRepo extends JpaRepository<ShippingDetails, Long> {
 
 
 
-@Query(value = "select *shipping_details where customer_customer_id =:customerId and purchase_order_purchase_order_id :purcahseID",nativeQuery = true)
+@Query(value = "select *from shipping_details where customer_customer_id =:customerId and purchase_order_purchase_order_id =:purcahseID",nativeQuery = true)
 List<ShippingDetails> getShippingDetails(@Param("customerId")long custID ,@Param("purcahseID")long purcID);
 
 }
